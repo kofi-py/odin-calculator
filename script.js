@@ -76,3 +76,28 @@ function clear() {
   secondNumber = "";
   currentOperator = null;
 }
+
+// Operate and evaulation logic
+function setOperator(operator) {
+  if (currentOperator !== null) evaluate();
+  firstNumber = display.textContent;
+  currentOperator = operator;
+  shouldResetScreen = true;
+}
+
+function evaluate() {
+  if (currentOperator === null || shouldResetScreen) return;
+  if (currentOperator === "/" && display.textContent === "0") {
+    display.textContent = "Nope! 🙅‍♂️";
+    return;
+  }
+  secondNumber = display.textContent;
+  display.textContent = roundResult(
+    operate(currentOperator, firstNumber, secondNumber)
+  );
+  currentOperator = null;
+}
+
+function roundResult(num) {
+  return Math.round(num * 1000) / 1000;
+}
