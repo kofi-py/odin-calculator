@@ -41,3 +41,38 @@ function operate(operator, a, b) {
       return null;
   }
 }
+
+// Display and Clear Logic
+const display = document.querySelector(".display");
+const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator");
+const clearButton = document.querySelector('[data-action="clear"]');
+const equalButton = document.querySelector(".equal");
+
+numberButtons.forEach((button) =>
+  button.addEventListener("click", () => appendNumber(button.textContent))
+);
+operatorButtons.forEach((button) =>
+  button.addEventListener("click", () => setOperator(button.dataset.operator))
+);
+equalButton.addEventListener("click", evaluate);
+clearButton.addEventListener("click", clear);
+
+function appendNumber(number) {
+  if (display.textContent === "0" || shouldResetScreen) {
+    resetScreen();
+  }
+  display.textContent += number;
+}
+
+function resetScreen() {
+  display.textContent = "";
+  shouldResetScreen = false;
+}
+
+function clear() {
+  display.textContent = "0";
+  firstNumber = "";
+  secondNumber = "";
+  currentOperator = null;
+}
