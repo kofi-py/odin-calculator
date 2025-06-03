@@ -17,3 +17,9 @@ function divide(a, b) {
   }
   return a / b;
 }
+
+// Create Variables for Operation
+let firstNumber = "";
+let secondNumber = "";
+let currentOperator = null;
+let shouldResetScreen = false;
